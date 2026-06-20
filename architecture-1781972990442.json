@@ -1,0 +1,702 @@
+{
+  "version": "1.0",
+  "diagramId": "exported",
+  "title": "Architecture Diagram",
+  "nodes": [
+    {
+      "id": "student-client",
+      "type": "client",
+      "label": "Student Client",
+      "generic_name": "Student Client",
+      "ports": [
+        {
+          "id": "out",
+          "label": "Request",
+          "side": "right"
+        }
+      ],
+      "data": {
+        "description": "Student interacting with the learning companion.",
+        "tech": [
+          "Web Browser"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "frontend-nextjs",
+      "type": "frontend",
+      "label": "Frontend (Next.js)",
+      "generic_name": "Web Frontend",
+      "ports": [
+        {
+          "id": "in",
+          "label": "In",
+          "side": "left"
+        },
+        {
+          "id": "out",
+          "label": "API Request",
+          "side": "right"
+        }
+      ],
+      "data": {
+        "description": "Next.js web application for the student interface.",
+        "tech": [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Tailwind CSS"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "api-gateway-fastapi",
+      "type": "api-gateway",
+      "label": "FastAPI Gateway",
+      "generic_name": "API Gateway",
+      "ports": [
+        {
+          "id": "in",
+          "label": "In",
+          "side": "left"
+        },
+        {
+          "id": "out",
+          "label": "Internal Request",
+          "side": "right"
+        }
+      ],
+      "data": {
+        "description": "FastAPI gateway for handling client requests and routing to the orchestrator.",
+        "tech": [
+          "FastAPI",
+          "Python",
+          "Pydantic"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "mastra-orchestrator",
+      "type": "service",
+      "label": "Mastra Orchestrator",
+      "generic_name": "Agent Orchestrator",
+      "ports": [
+        {
+          "id": "in",
+          "label": "In",
+          "side": "left"
+        },
+        {
+          "id": "out",
+          "label": "Agent Call",
+          "side": "right"
+        }
+      ],
+      "data": {
+        "description": "Mastra-based agentic workflow orchestrator managing the swarm.",
+        "tech": [
+          "Python",
+          "Mastra"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "cognitive-profiler-agent",
+      "type": "service",
+      "label": "Student Cognitive Profiler",
+      "generic_name": "Profiler Agent",
+      "ports": [
+        {
+          "id": "in",
+          "label": "In",
+          "side": "left"
+        },
+        {
+          "id": "out",
+          "label": "LLM Call",
+          "side": "right"
+        },
+        {
+          "id": "db",
+          "label": "Memory",
+          "side": "bottom"
+        }
+      ],
+      "data": {
+        "description": "Maintains learning preferences, proficiency level, and historical performance.",
+        "tech": [
+          "Python",
+          "Mastra",
+          "LangGraph"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "pedagogy-engine-agent",
+      "type": "service",
+      "label": "Adaptive Pedagogy Engine",
+      "generic_name": "Pedagogy Agent",
+      "ports": [
+        {
+          "id": "in",
+          "label": "In",
+          "side": "left"
+        },
+        {
+          "id": "out",
+          "label": "LLM Call",
+          "side": "right"
+        },
+        {
+          "id": "db",
+          "label": "Memory",
+          "side": "bottom"
+        }
+      ],
+      "data": {
+        "description": "Generates explanations tailored to the student's level and learning style.",
+        "tech": [
+          "Python",
+          "Mastra",
+          "LangGraph"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "knowledge-gap-agent",
+      "type": "service",
+      "label": "Knowledge Gap Inference Engine",
+      "generic_name": "Gap Inference Agent",
+      "ports": [
+        {
+          "id": "in",
+          "label": "In",
+          "side": "left"
+        },
+        {
+          "id": "out",
+          "label": "LLM Call",
+          "side": "right"
+        },
+        {
+          "id": "db",
+          "label": "Memory",
+          "side": "bottom"
+        }
+      ],
+      "data": {
+        "description": "Identifies misconceptions and updates topic mastery.",
+        "tech": [
+          "Python",
+          "Mastra",
+          "LangGraph"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "quiz-synthesis-agent",
+      "type": "service",
+      "label": "Quiz Synthesis Engine",
+      "generic_name": "Quiz Agent",
+      "ports": [
+        {
+          "id": "in",
+          "label": "In",
+          "side": "left"
+        },
+        {
+          "id": "out",
+          "label": "LLM Call",
+          "side": "right"
+        },
+        {
+          "id": "db",
+          "label": "Memory",
+          "side": "bottom"
+        }
+      ],
+      "data": {
+        "description": "Creates adaptive quizzes and flashcards.",
+        "tech": [
+          "Python",
+          "Mastra",
+          "LangGraph"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "spaced-repetition-agent",
+      "type": "service",
+      "label": "Spaced-Repetition Scheduler",
+      "generic_name": "Scheduler Agent",
+      "ports": [
+        {
+          "id": "in",
+          "label": "In",
+          "side": "left"
+        },
+        {
+          "id": "out",
+          "label": "LLM Call",
+          "side": "right"
+        },
+        {
+          "id": "db",
+          "label": "Memory",
+          "side": "bottom"
+        }
+      ],
+      "data": {
+        "description": "Resurfaces weak concepts using forgetting-curve principles.",
+        "tech": [
+          "Python",
+          "Mastra",
+          "LangGraph"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "safety-alignment-agent",
+      "type": "service",
+      "label": "Safety Alignment Agent",
+      "generic_name": "Safety Agent",
+      "ports": [
+        {
+          "id": "in",
+          "label": "In",
+          "side": "left"
+        },
+        {
+          "id": "out",
+          "label": "Guardrail Call",
+          "side": "right"
+        },
+        {
+          "id": "db",
+          "label": "Memory",
+          "side": "bottom"
+        }
+      ],
+      "data": {
+        "description": "Applies Enkrypt AI guardrails to ensure trustworthy educational responses.",
+        "tech": [
+          "Python",
+          "Mastra",
+          "LangGraph",
+          "Enkrypt AI"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "qdrant-memory-layer",
+      "type": "database",
+      "label": "Qdrant Memory Layer",
+      "generic_name": "Vector Database",
+      "ports": [
+        {
+          "id": "in",
+          "label": "Query/Store",
+          "side": "top"
+        }
+      ],
+      "data": {
+        "description": "Vector database storing student_profiles, conversation_memory, knowledge_gaps, learning_materials, and quiz_history.",
+        "tech": [
+          "Qdrant"
+        ],
+        "isolated": false
+      }
+    },
+    {
+      "id": "llm-provider-external",
+      "type": "service",
+      "label": "LLM (GPT-4o / Gemini)",
+      "generic_name": "LLM Provider",
+      "ports": [
+        {
+          "id": "in",
+          "label": "Prompt",
+          "side": "left"
+        }
+      ],
+      "data": {
+        "description": "GPT-4o / Gemini for natural language generation and reasoning.",
+        "tech": [
+          "OpenAI GPT-4o",
+          "Google Gemini 1.5 Pro"
+        ],
+        "isolated": true
+      }
+    },
+    {
+      "id": "enkrypt-ai-guardrails-external",
+      "type": "service",
+      "label": "Enkrypt AI Guardrails",
+      "generic_name": "AI Guardrails",
+      "ports": [
+        {
+          "id": "in",
+          "label": "Check",
+          "side": "left"
+        }
+      ],
+      "data": {
+        "description": "Provides input/output protection including prompt injection detection, toxicity filtering, and hallucination detection.",
+        "tech": [
+          "Enkrypt AI"
+        ],
+        "isolated": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-frontend",
+      "source": {
+        "nodeId": "student-client",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "frontend-nextjs",
+        "portId": "in"
+      },
+      "type": "http",
+      "label": null
+    },
+    {
+      "id": "frontend-to-gateway",
+      "source": {
+        "nodeId": "frontend-nextjs",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "api-gateway-fastapi",
+        "portId": "in"
+      },
+      "type": "http",
+      "label": null
+    },
+    {
+      "id": "gateway-to-orchestrator",
+      "source": {
+        "nodeId": "api-gateway-fastapi",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "mastra-orchestrator",
+        "portId": "in"
+      },
+      "type": "internal-api",
+      "label": null
+    },
+    {
+      "id": "orch-to-profiler",
+      "source": {
+        "nodeId": "mastra-orchestrator",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "cognitive-profiler-agent",
+        "portId": "in"
+      },
+      "type": "internal-api",
+      "label": null
+    },
+    {
+      "id": "orch-to-pedagogy",
+      "source": {
+        "nodeId": "mastra-orchestrator",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "pedagogy-engine-agent",
+        "portId": "in"
+      },
+      "type": "internal-api",
+      "label": null
+    },
+    {
+      "id": "orch-to-gap",
+      "source": {
+        "nodeId": "mastra-orchestrator",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "knowledge-gap-agent",
+        "portId": "in"
+      },
+      "type": "internal-api",
+      "label": null
+    },
+    {
+      "id": "orch-to-quiz",
+      "source": {
+        "nodeId": "mastra-orchestrator",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "quiz-synthesis-agent",
+        "portId": "in"
+      },
+      "type": "internal-api",
+      "label": null
+    },
+    {
+      "id": "orch-to-spaced",
+      "source": {
+        "nodeId": "mastra-orchestrator",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "spaced-repetition-agent",
+        "portId": "in"
+      },
+      "type": "internal-api",
+      "label": null
+    },
+    {
+      "id": "orch-to-safety",
+      "source": {
+        "nodeId": "mastra-orchestrator",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "safety-alignment-agent",
+        "portId": "in"
+      },
+      "type": "internal-api",
+      "label": null
+    },
+    {
+      "id": "profiler-to-qdrant",
+      "source": {
+        "nodeId": "cognitive-profiler-agent",
+        "portId": "db"
+      },
+      "target": {
+        "nodeId": "qdrant-memory-layer",
+        "portId": "in"
+      },
+      "type": "database",
+      "label": null
+    },
+    {
+      "id": "pedagogy-to-qdrant",
+      "source": {
+        "nodeId": "pedagogy-engine-agent",
+        "portId": "db"
+      },
+      "target": {
+        "nodeId": "qdrant-memory-layer",
+        "portId": "in"
+      },
+      "type": "database",
+      "label": null
+    },
+    {
+      "id": "gap-to-qdrant",
+      "source": {
+        "nodeId": "knowledge-gap-agent",
+        "portId": "db"
+      },
+      "target": {
+        "nodeId": "qdrant-memory-layer",
+        "portId": "in"
+      },
+      "type": "database",
+      "label": null
+    },
+    {
+      "id": "quiz-to-qdrant",
+      "source": {
+        "nodeId": "quiz-synthesis-agent",
+        "portId": "db"
+      },
+      "target": {
+        "nodeId": "qdrant-memory-layer",
+        "portId": "in"
+      },
+      "type": "database",
+      "label": null
+    },
+    {
+      "id": "spaced-to-qdrant",
+      "source": {
+        "nodeId": "spaced-repetition-agent",
+        "portId": "db"
+      },
+      "target": {
+        "nodeId": "qdrant-memory-layer",
+        "portId": "in"
+      },
+      "type": "database",
+      "label": null
+    },
+    {
+      "id": "safety-to-qdrant",
+      "source": {
+        "nodeId": "safety-alignment-agent",
+        "portId": "db"
+      },
+      "target": {
+        "nodeId": "qdrant-memory-layer",
+        "portId": "in"
+      },
+      "type": "database",
+      "label": null
+    },
+    {
+      "id": "profiler-to-llm",
+      "source": {
+        "nodeId": "cognitive-profiler-agent",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "llm-provider-external",
+        "portId": "in"
+      },
+      "type": "http",
+      "label": null
+    },
+    {
+      "id": "pedagogy-to-llm",
+      "source": {
+        "nodeId": "pedagogy-engine-agent",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "llm-provider-external",
+        "portId": "in"
+      },
+      "type": "http",
+      "label": null
+    },
+    {
+      "id": "gap-to-llm",
+      "source": {
+        "nodeId": "knowledge-gap-agent",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "llm-provider-external",
+        "portId": "in"
+      },
+      "type": "http",
+      "label": null
+    },
+    {
+      "id": "quiz-to-llm",
+      "source": {
+        "nodeId": "quiz-synthesis-agent",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "llm-provider-external",
+        "portId": "in"
+      },
+      "type": "http",
+      "label": null
+    },
+    {
+      "id": "spaced-to-llm",
+      "source": {
+        "nodeId": "spaced-repetition-agent",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "llm-provider-external",
+        "portId": "in"
+      },
+      "type": "http",
+      "label": null
+    },
+    {
+      "id": "safety-to-llm",
+      "source": {
+        "nodeId": "safety-alignment-agent",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "llm-provider-external",
+        "portId": "in"
+      },
+      "type": "http",
+      "label": null
+    },
+    {
+      "id": "safety-to-enkrypt",
+      "source": {
+        "nodeId": "safety-alignment-agent",
+        "portId": "out"
+      },
+      "target": {
+        "nodeId": "enkrypt-ai-guardrails-external",
+        "portId": "in"
+      },
+      "type": "http",
+      "label": null
+    }
+  ],
+  "groups": [
+    {
+      "children": [
+        "student-client",
+        "frontend-nextjs"
+      ],
+      "id": "user-interface-group",
+      "label": "User Interface"
+    },
+    {
+      "children": [
+        "api-gateway-fastapi"
+      ],
+      "id": "api-edge-group",
+      "label": "API Edge"
+    },
+    {
+      "children": [
+        "mastra-orchestrator"
+      ],
+      "id": "orchestration-group",
+      "label": "Orchestration Layer"
+    },
+    {
+      "children": [
+        "cognitive-profiler-agent",
+        "pedagogy-engine-agent",
+        "knowledge-gap-agent",
+        "quiz-synthesis-agent",
+        "spaced-repetition-agent",
+        "safety-alignment-agent"
+      ],
+      "id": "agent-swarm-group",
+      "label": "Mastra Agent Swarm"
+    },
+    {
+      "children": [
+        "qdrant-memory-layer"
+      ],
+      "id": "data-layer-group",
+      "label": "Memory Layer (Qdrant)"
+    },
+    {
+      "children": [
+        "llm-provider-external",
+        "enkrypt-ai-guardrails-external"
+      ],
+      "id": "external-ai-group",
+      "label": "External AI Services"
+    }
+  ],
+  "metadata": {}
+}
